@@ -1,9 +1,13 @@
+import { auth } from "@/auth/authSetup";
 import React from "react";
 
-function page() {
+async function page() {
+  const session = await auth();
+  const user = session?.user;
+
   const userInfo = {
-    name: "John",
-    email: "john@example.com",
+    name: user?.name,
+    email: user?.email,
   };
   return (
     <>
