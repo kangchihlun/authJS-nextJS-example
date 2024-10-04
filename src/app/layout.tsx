@@ -3,7 +3,7 @@ import localFont from "next/font/local";
 import "./globals.css";
 import Link from "next/link";
 import { auth, signOut } from "@/auth/authSetup";
-import { SessionProvider } from "next-auth/react";
+import Image from "next/image";
 
 const geistSans = localFont({
   src: "./fonts/GeistVF.woff",
@@ -39,6 +39,9 @@ export default async function RootLayout({
               <Link href="/">Home</Link>
             </li>
             <li className="hover:underline">
+              <Link href="/client-test">Client</Link>
+            </li>
+            <li className="hover:underline">
               <Link href="/my-account">My Account</Link>
             </li>
           </ul>
@@ -50,14 +53,23 @@ export default async function RootLayout({
                   await signOut();
                 }}
               >
-                <button>Logout</button>
+                <div className="flex items-center gap-2">
+                  <button>Logout</button>
+                  <Image
+                    src={session.user.image || ""}
+                    alt={session.user.name || ""}
+                    className="rounded-full w-4 h-4 object-cover"
+                    width={12}
+                    height={12}
+                  />
+                </div>
               </form>
             ) : (
               <Link href="/login">Login</Link>
             )}
           </div>
         </div>
-        <SessionProvider>{children}</SessionProvider>
+        <div>{children}</div>
       </body>
     </html>
   );

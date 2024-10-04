@@ -13,6 +13,7 @@ async function ServerComponent() {
       <h1 className="mb-2">This is Server component</h1>
       <div className="bg-slate-900 p-2 rounded-md">
         <h1>This is protected data</h1>
+        <p>Name: {session.user?.name}</p>
       </div>
     </div>
   );

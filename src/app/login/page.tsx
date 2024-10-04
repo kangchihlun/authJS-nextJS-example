@@ -10,13 +10,17 @@ function page() {
         <button
           type="submit"
           className="p-2 bg-blue-700 w-[60%] mx-auto rounded-md hover:bg-blue-800"
-          onClick={() => signIn("google")}
+          onClick={() =>
+            signIn("google", {
+              callbackUrl: "/my-account",
+            })
+          }
         >
           Login with Google
         </button>
         <button
           className="p-2 bg-gray-700 w-[60%] mx-auto rounded-md hover:bg-gray-800"
-          onClick={() => signIn("github")}
+          onClick={() => signIn("github", { callbackUrl: "/my-account" })}
         >
           Login with GitHub
         </button>
